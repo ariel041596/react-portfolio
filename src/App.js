@@ -1,28 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-import TopBar from "./components/topbar/TopBar";
-import Introduction from "./components/introduction/Introduction";
-import Portfolio from "./components/portfolio/Portfolio";
-import Work from "./components/works/Work";
-import Testimonials from "./components/testimonials/Testimonials";
-import Contact from "./components/contact/Contact";
-import Menu from "./components/menu/Menu";
+import HomeScreen from "./screens/HomeScreen";
+import ProjectScreen from "./screens/ProjectScreen";
+import EventScreen from "./screens/EventScreen";
 
-import "./app.scss";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    AOS.init({
+      duration: 1200,
+    });
+  }, []);
+
   return (
     <div className="app">
-      <TopBar menuOpen={menuOpen} setMenuOpen={setMenuOpen}></TopBar>
-      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <div className="sections">
-        <Introduction></Introduction>
-        <Portfolio></Portfolio>
-        <Work></Work>
-        <Testimonials></Testimonials>
-        <Contact></Contact>
-      </div>
+      <Router>
+        <Route path="/" component={HomeScreen} exact></Route>
+        <Route path="/projects/:id" component={ProjectScreen} exact></Route>
+        <Route path="/events/:id" component={EventScreen} exact></Route>
+      </Router>
     </div>
   );
 }

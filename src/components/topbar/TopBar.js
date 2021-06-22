@@ -1,6 +1,6 @@
 // import React from 'react'
 import "./topbar.scss";
-import { Person, Mail } from "@material-ui/icons";
+import { Call, Mail } from "@material-ui/icons";
 
 const TopBar = ({ menuOpen, setMenuOpen }) => {
   return (
@@ -11,12 +11,21 @@ const TopBar = ({ menuOpen, setMenuOpen }) => {
             Ariel Espinoza
           </a>
           <div className="itemContainer">
-            <Person className="icon"></Person>
+            <Call className="icon"></Call>
             <span>+63-916-665-2324</span>
           </div>
           <div className="itemContainer">
             <Mail className="icon"></Mail>
             <span>ariel.espinoza041@gmail.com</span>
+            {/* <ListItem
+              className={
+                locationActive.pathname === route.to ? classes.active : null
+              }
+              button
+              key={route.to}
+              component={Link}
+              to={route.to}
+            > */}
           </div>
         </div>
         <div className="right">

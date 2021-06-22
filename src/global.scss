@@ -1,1 +1,13 @@
-$mainColor: #15023a;
+$mainColor: #222831;
+$secondary: #3a3e46;
+$textColor: #eeeeee;
+$warning: #b55400;
+$box: #ffb510;
+
+$width: 768px;
+
+@mixin mobile {
+  @media (max-width: #{$width}) {
+    @content;
+  }
+}
