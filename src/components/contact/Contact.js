@@ -1,17 +1,53 @@
 import React, { useState } from "react";
 import "./contact.scss";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Snackbar } from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
+
 import { Send } from "@material-ui/icons";
+import emailjs from "emailjs-com";
+import { SERVICE_ID, USER_ID, TEMPLATE_ID } from "../../emailkey";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="outlined" {...props} />;
+}
 
 const Contact = () => {
   // Variables
-  const [message, setMessage] = useState(false);
+  const [snackMessage, setSnackMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [composedMessage, setComposedMessage] = useState("");
+  const [open, setOpen] = useState(false);
+  const [variant, setVariant] = useState("");
 
   // Methods
   const handleSubmit = (e) => {
     e.preventDefault();
-    setMessage(true);
+    const templateParams = {
+      email: email,
+      message: composedMessage,
+      to_name: "Ariel",
+    };
+
+    // Send Email
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID).then(
+      (response) => {
+        setVariant("success");
+        setSnackMessage("Successfully sent an email.");
+        setOpen(true);
+        console.log("SUCCESS!", response.status, response.text);
+      },
+      (err) => {
+        setVariant("error");
+        setSnackMessage("Something went wrong");
+        setOpen(true);
+        console.log("FAILED...", err);
+      }
+    );
   };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="contact" id="contact">
       <div className="left">
@@ -27,6 +63,8 @@ const Contact = () => {
             margin="normal"
             variant="outlined"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             id="outlined-multiline-static"
@@ -35,6 +73,8 @@ const Contact = () => {
             rows={4}
             variant="outlined"
             required
+            value={composedMessage}
+            onChange={(e) => setComposedMessage(e.target.value)}
           />
           <Button
             style={{ marginTop: 10 }}
@@ -46,7 +86,6 @@ const Contact = () => {
             Send &nbsp;
             <Send></Send>
           </Button>
-          {message && <span>Thanks, I'll reply ASAP :)</span>}
         </form>
         <div className="footer">
           &copy; {new Date().getFullYear()}, Made with{" "}
@@ -64,6 +103,11 @@ const Contact = () => {
           by Ariel
         </div>
       </div>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={variant}>
+          {snackMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

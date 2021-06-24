@@ -108,11 +108,12 @@
                 display: none;
               }
             }
-            span {
+            a {
               font-size: 17px;
               font-weight: 600;
               text-decoration: underline;
               cursor: pointer;
+              color: black;
 
               @include mobile {
                 font-size: 12px;

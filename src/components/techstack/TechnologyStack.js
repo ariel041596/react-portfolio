@@ -28,11 +28,11 @@ const TechnologyStack = () => {
     },
     {
       id: "web",
-      title: "Web App",
+      title: "Web Development",
     },
     {
       id: "mobile",
-      title: "Mobile App",
+      title: "Mobile Development",
     },
     {
       id: "design",

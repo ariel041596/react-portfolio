@@ -51,7 +51,7 @@ const Work = () => {
                   </div>
                   <h2>{d.title}</h2>
                   <p>{d.desc}</p>
-                  <span>Projects</span>
+                  <a href="#portfolio">Projects</a>
                 </div>
               </div>
               <div className="right">

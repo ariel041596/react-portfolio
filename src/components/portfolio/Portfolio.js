@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import PortfolioList from "../portfolioList/PortfolioList";
 
+import { useHistory } from "react-router-dom";
+
 import {
   featuredPortfolio,
   webPortfolio,
   mobilePortfolio,
-  designPortfolio,
-  // contentPortfolio,
+  // designPortfolio,
+  // allProjects,
 } from "../../data";
 import "./portfolio.scss";
 
 const Portfolio = () => {
   // Variables
+  const history = useHistory();
   const [selected, setSelected] = useState("featured");
   const [data, setData] = useState([]);
   const list = [
@@ -27,15 +30,20 @@ const Portfolio = () => {
       id: "mobile",
       title: "Mobile App",
     },
-    {
-      id: "design",
-      title: "Design",
-    },
     // {
-    //   id: "content",
-    //   title: "Content",
+    //   id: "design",
+    //   title: "Design",
+    // },
+    // {
+    //   id: "all",
+    //   title: "All Project",
     // },
   ];
+
+  // Methods
+  const handleclick = (id) => {
+    history.push(`projects/${id}`);
+  };
 
   // UseEffect
   useEffect(() => {
@@ -49,11 +57,11 @@ const Portfolio = () => {
       case "mobile":
         setData(mobilePortfolio);
         break;
-      case "design":
-        setData(designPortfolio);
-        break;
-      // case "content":
-      //   setData(contentPortfolio);
+      // case "design":
+      //   setData(designPortfolio);
+      //   break;
+      // case "all":
+      //   setData(allProjects);
       //   break;
       default:
         setData(featuredPortfolio);
@@ -76,10 +84,12 @@ const Portfolio = () => {
       </ul>
       <div className="container">
         {data.map((d) => (
-          <div className="item">
+          // <Link to={`/projects/${d.id}`}>
+          <div onClick={() => handleclick(d.id)} key={d.id} className="item">
             <img src={d.img} alt="" />
             <h3>{d.title}</h3>
           </div>
+          // </Link>
         ))}
       </div>
       <a href="#work">
