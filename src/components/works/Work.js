@@ -23,7 +23,7 @@ const Work = () => {
       id: "3",
       icon: "./assets/writing.png",
       title: "Branding",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      desc: "I can also help to promote and build business ideas by branding.",
       img: "https://i.pinimg.com/originals/a9/f6/94/a9f69465d972a004ad581f245d6ad581.jpg",
     },
   ];

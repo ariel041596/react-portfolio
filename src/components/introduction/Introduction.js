@@ -35,12 +35,12 @@ const Introduction = () => {
           <h3>
             I'm a <span ref={textRef}></span>
           </h3> */}
-          <div class="title">
-            <span class="block"></span>
+          <div className="title">
+            <span className="block"></span>
             <h1>Ariel Espinoza</h1>
           </div>
-          <div class="role">
-            <div class="block"></div>
+          <div className="role">
+            <div className="block"></div>
             <h3>
               I'm a <span ref={textRef}></span>
             </h3>

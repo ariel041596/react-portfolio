@@ -2,14 +2,25 @@
 import "./topbar.scss";
 import { Call, Mail } from "@material-ui/icons";
 
+import { useHistory } from "react-router-dom";
+
 const TopBar = ({ menuOpen, setMenuOpen }) => {
+  // variables
+  const history = useHistory();
+
+  // Methods
+  const handleIntro = () => {
+    history.push("/");
+  };
   return (
     <div className={"topbar " + (menuOpen && "active")}>
       <div className="wrapper">
         <div className="left">
-          <a href="#introduction" className="logo">
-            Ariel Espinoza
-          </a>
+          <div onClick={handleIntro}>
+            <a href="#introduction" className="logo">
+              Ariel Espinoza
+            </a>
+          </div>
           <div className="itemContainer">
             <Call className="icon"></Call>
             <span>+63-916-665-2324</span>
